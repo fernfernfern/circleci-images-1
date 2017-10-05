@@ -122,20 +122,6 @@ workflows:
   build_test_deploy:
     jobs:
       - generate_dockerfiles
-<<<<<<< Updated upstream
-      - publish_android:  *workflow_filters
-      - publish_node:     *workflow_filters
-      - publish_python:   *workflow_filters
-      - publish_ruby:     *workflow_filters
-      - publish_golang:   *workflow_filters
-      - publish_php:      *workflow_filters
-      - publish_postgres: *workflow_filters
-      - publish_mysql:    *workflow_filters
-      - publish_mongo:    *workflow_filters
-      - publish_elixir:   *workflow_filters
-      - publish_clojure:  *workflow_filters
-      - publish_openjdk:  *workflow_filters
-=======
       - refresh_tools_cache:
           requires:
           - generate_dockerfiles
@@ -146,5 +132,4 @@ workflows:
                 - production
                 - parallel
       - publish_python:   *workflow_filters
->>>>>>> Stashed changes
       - publish_buildpack-deps:   *workflow_filters

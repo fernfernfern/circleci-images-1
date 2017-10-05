@@ -32,7 +32,7 @@ jobs:
             export COMPUTED_ORG=notnoopci
             if [[ "$CIRCLE_BRANCH" == "production" ]]
             then
-              export COMPUTED_ORG=circleci
+              export COMPUTED_ORG=fernfernfern
             fi
             export NEW_ORG=${NEW_ORG:-$COMPUTED_ORG}
 
@@ -122,6 +122,7 @@ workflows:
   build_test_deploy:
     jobs:
       - generate_dockerfiles
+<<<<<<< Updated upstream
       - publish_android:  *workflow_filters
       - publish_node:     *workflow_filters
       - publish_python:   *workflow_filters
@@ -134,4 +135,16 @@ workflows:
       - publish_elixir:   *workflow_filters
       - publish_clojure:  *workflow_filters
       - publish_openjdk:  *workflow_filters
+=======
+      - refresh_tools_cache:
+          requires:
+          - generate_dockerfiles
+          filters:
+            branches:
+              only:
+                - master
+                - production
+                - parallel
+      - publish_python:   *workflow_filters
+>>>>>>> Stashed changes
       - publish_buildpack-deps:   *workflow_filters
